@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+  api:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: node index.js
+    environment:
+      - PORT=3000
